@@ -4,26 +4,25 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live NBA</title>
+  <title>NBA Team Reference</title>
 </head>
 <body>
+  <h1>Team Lookup</h1>
+    <form id='form'>
+      <input id="input-name"
+        type="string"
+        placeholder="Enter Team Name"
+      ><br>
+      <button type="submit">Search</button>
+    </form>
+  <script src='script.js'>
+  </script>
   <script>
-    const data = null;
-    const teamName = "bulls";
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+    const form = document.getElementById('form');
+    const teamName = 'bulls'
+    // const teamName = document.getElementById('input-name');
 
-    xhr.addEventListener("readystatechange", function () {
-      if (this.readyState === this.DONE) {
-        console.log(this.responseText);
-      }
-    });
-
-    xhr.open("GET", "https://api-nba-v1.p.rapidapi.com/teams/nickName/" + teamName);
-    xhr.setRequestHeader("x-rapidapi-key", "cc18e95e0fmsh1e8f5597163251cp1dc923jsnf4b5c9f80b9e");
-    xhr.setRequestHeader("x-rapidapi-host", "api-nba-v1.p.rapidapi.com");
-
-    xhr.send(data);
+    getTeam(teamName)
   </script>
 </body>
 </html>
