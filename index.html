@@ -4,25 +4,44 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NBA Team Reference</title>
+  <title>Recipe Shopping List</title>
 </head>
 <body>
-  <h1>Team Lookup</h1>
+  <h1>Enter Recipe Link</h1>
     <form id='form'>
-      <input id="input-name"
+      <input id="input-url"
         type="string"
-        placeholder="Enter Team Name"
+        placeholder="Paste URL"
       ><br>
-      <button type="submit">Search</button>
+      <button type="submit">Get Ingredients</button>
     </form>
+  <h3>
+    List of Ingredients:
+  </h3>
+  <ul id='ingredient-list'>
+
+  </ul>
   <script src='script.js'>
   </script>
   <script>
     const form = document.getElementById('form');
-    const teamName = 'bulls'
-    // const teamName = document.getElementById('input-name');
+    const listIngredients = document.getElementById('ingredient-list');
+    // const url = 'https://cooking.nytimes.com/recipes/9039-vanilla-creme-brulee';
+    // const url = document.getElementById('input-url')
 
-    getTeam(teamName)
+    form.addEventListener('submit', (e) => {
+          e.preventDefault()
+          const url = document.getElementById('input-url').value
+          getRecipe(url, (data) => {
+            const ingredients = data[0].ingredients
+            let list = ''
+            for (i = 0; i < ingredients.length; i += 1){
+              list += `<li>${ingredients[i]}</li>`
+            }
+
+            listIngredients.innerHTML = list
+          })
+        })
   </script>
 </body>
 </html>
